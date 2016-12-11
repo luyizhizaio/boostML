@@ -102,7 +102,7 @@ print counts.most_common(10)
 
 from pandas import DataFrame,Series
 
-import pandas as pd ; import numpy as np
+import pandas as pd ; import __init__ as np
 frame =DataFrame(records)
 
 #输出摘要视图

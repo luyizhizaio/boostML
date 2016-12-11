@@ -2,7 +2,7 @@ __author__ = 'dayue'
 #-*-coding:utf-8 -*-
 
 import pandas as pd
-import numpy  as np
+import __init__  as np
 
 #name,sex,number
 #读取文本
