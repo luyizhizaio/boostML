@@ -102,3 +102,79 @@ a[a> 0.5] = 0.5
 print a
 
 #3.二维数组切片
+
+
+a= np.arange(0,60,10).reshape(-1 ,1) + np.arange(6)
+print a
+#切片
+#取0行0元素，1行2元素，3行4元素
+print a[[0,1,3],[0,2,4]]
+
+# 从第3列取到最后
+print a[:,3:]
+#第3行，2-4列
+print a [3,[2,3,4]]
+#取3行之后所有行，2-4列元素
+print a[3:,[2,3,4]]
+
+#取为true的行
+i = np.array([True, False, True, False, False, True])
+print 'a[i] = \n', a[i]
+#为true的行的下标为3元素
+print a[i,3]
+
+#三. 元素去重
+
+#1.直接使用库函数
+a = np.array((1,2,3,4,5,5,6,7,8,9,6,7,8,9))
+print a
+b = np.unique(a)
+print b
+
+#2.二维数据去重
+c = np.array(((1, 2), (3, 4), (5, 6), (1, 3), (3, 4), (7, 6)))
+print u'二维数组：\n', c
+print '去重后：', np.unique(c) #与想象结果不服，解决方案
+
+#方案1：转换为虚数
+r, i = np.split(c, (1, ), axis=1)
+x = r + i * 1j
+#x = c[:, 0] + c[:, 1] * 1j
+print '转换成虚数：', x
+print '虚数去重后：', np.unique(x)
+print np.unique(x, return_index=True)   # 思考return_index的意义
+idx = np.unique(x, return_index=True)[1]
+print '二维数组去重：\n', c[idx]
+#方案2：利用set
+print '去重方案2：\n', np.array(list(set([tuple(t) for t in c])))
+
+
+#四.stack and axis
+
+#stack函数 沿着新轴连接数组的序列(axis=0 沿着行合并，axis=1 沿着列合并)
+a = np.array([1, 2, 3])
+b = np.array([2, 3, 4])
+
+print 'stack axis =0 \n', np.stack((a, b), axis=0)
+# [[1 2 3]
+#  [2 3 4]]
+
+print 'stack axis =1 \n', np.stack((a, b), axis=1)
+# [[1 2]
+#  [2 3]
+#  [3 4]]
+
+#三维
+a = np.arange(1,10).reshape((3,3))
+b = np.arange(11,20).reshape((3,3))
+c = np.arange(101, 110).reshape((3, 3))
+print 'a = \n',a
+print 'b = \n',b
+print 'c = \n',c
+print 'axis = 0 \n', np.stack((a, b, c), axis=0)
+print 'axis = 1 \n', np.stack((a, b, c), axis=1)
+
+print 'axis = 2 \n', np.stack((a, b, c), axis=2)
+
+
+
