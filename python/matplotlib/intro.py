@@ -6,6 +6,9 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import math
 
+from mpl_toolkits.mplot3d import Axes3D
+from matplotlib import cm
+
 #matplotlib.pyplot是一个命令风格函数的集合，使matplotlib的机制更像 MATLAB
 if __name__ == "__main__":
     #图片中指定中文
@@ -14,27 +17,27 @@ if __name__ == "__main__":
 
 
     #1.绘制正态分布函数密度函数
-    mu = 0
-    sigma = 1
-
-    x = np.linspace(mu -3 *sigma,mu +3 * sigma ,51)
-
-    y = np.exp(-(x - mu) ** 2/ (2 * sigma ** 2))/(math.sqrt(2 * math.pi) * sigma)
-
-    print x.shape
-
-    print 'x = \n', x
-    print y.shape
-    print 'y = \n' ,y
-    plt.figure(facecolor='w') #生成第一个图片，用于一次生成多张图片
-    plt.plot(x, y, 'ro-', linewidth=2)
-    plt.figure(facecolor='w') #生成第二个图片
-    plt.plot(x, y, 'r-', x, y, 'go', linewidth=2, markersize=8) #可以多次指定x，y的样式
-    plt.xlabel('X',fontsize = 15)
-    plt.xlabel('Y',fontsize = 15)
-    plt.title(u'高斯分布函数',fontsize=20)
-    plt.grid(True) #是否右网格
-    plt.show()
+    # mu = 0
+    # sigma = 1
+    #
+    # x = np.linspace(mu -3 *sigma,mu +3 * sigma ,51)
+    #
+    # y = np.exp(-(x - mu) ** 2/ (2 * sigma ** 2))/(math.sqrt(2 * math.pi) * sigma)
+    #
+    # print x.shape
+    #
+    # print 'x = \n', x
+    # print y.shape
+    # print 'y = \n' ,y
+    # plt.figure(facecolor='w') #生成第一个图片，用于一次生成多张图片
+    # plt.plot(x, y, 'ro-', linewidth=2)
+    # plt.figure(facecolor='w') #生成第二个图片
+    # plt.plot(x, y, 'r-', x, y, 'go', linewidth=2, markersize=8) #可以多次指定x，y的样式
+    # plt.xlabel('X',fontsize = 15)
+    # plt.xlabel('Y',fontsize = 15)
+    # plt.title(u'高斯分布函数',fontsize=20)
+    # plt.grid(True) #是否右网格
+    # plt.show()
 
 
 
@@ -80,3 +83,36 @@ if __name__ == "__main__":
     # plt.show()
     # print a
     # print a[0].sum()
+
+
+
+ # 7. 绘制三维图像
+    x, y = np.ogrid[-3:3:100j, -3:3:100j]
+    # u = np.linspace(-3, 3, 101)
+    # x, y = np.meshgrid(u, u)
+    z = x*y*np.exp(-(x**2 + y**2)/2) / math.sqrt(2*math.pi)
+    # z = x*y*np.exp(-(x**2 + y**2)/2) / math.sqrt(2*math.pi)
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.plot_surface(x, y, z, rstride=5, cstride=5, cmap=cm.coolwarm, linewidth=0.1)  #
+    #ax.plot_surface(x, y, z, rstride=5, cstride=5, cmap=cm.Accent, linewidth=0.5)
+    plt.show()
+    # cmaps = [('Perceptually Uniform Sequential',
+    #           ['viridis', 'inferno', 'plasma', 'magma']),
+    #          ('Sequential', ['Blues', 'BuGn', 'BuPu',
+    #                          'GnBu', 'Greens', 'Greys', 'Oranges', 'OrRd',
+    #                          'PuBu', 'PuBuGn', 'PuRd', 'Purples', 'RdPu',
+    #                          'Reds', 'YlGn', 'YlGnBu', 'YlOrBr', 'YlOrRd']),
+    #          ('Sequential (2)', ['afmhot', 'autumn', 'bone', 'cool',
+    #                              'copper', 'gist_heat', 'gray', 'hot',
+    #                              'pink', 'spring', 'summer', 'winter']),
+    #          ('Diverging', ['BrBG', 'bwr', 'coolwarm', 'PiYG', 'PRGn', 'PuOr',
+    #                         'RdBu', 'RdGy', 'RdYlBu', 'RdYlGn', 'Spectral',
+    #                         'seismic']),
+    #          ('Qualitative', ['Accent', 'Dark2', 'Paired', 'Pastel1',
+    #                           'Pastel2', 'Set1', 'Set2', 'Set3']),
+    #          ('Miscellaneous', ['gist_earth', 'terrain', 'ocean', 'gist_stern',
+    #                             'brg', 'CMRmap', 'cubehelix',
+    #                             'gnuplot', 'gnuplot2', 'gist_ncar',
+    #                             'nipy_spectral', 'jet', 'rainbow',
+    #                             'gist_rainbow', 'hsv', 'flag', 'prism'])]
