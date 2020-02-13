@@ -78,8 +78,8 @@ if __name__ == "__main__":
 
     order = y_test.argsort(axis=0) #argsort函数返回的是数组值从小到大的索引值
     print 'order=\n',order
-    y_test = y_test.values[order]
-    x_test = x_test.values[order,:]
+    y_test = y_test.values[order] #按order 排序
+    x_test = x_test.values[order,:] #行按order 排序
     y_hat = linreg.predict(x_test)
 
     mse = np.average((y_hat - np.array(y_test)) **2) #Mean Squared Error
