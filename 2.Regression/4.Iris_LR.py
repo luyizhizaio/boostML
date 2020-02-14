@@ -43,7 +43,7 @@ if __name__ == "__main__":
     x2_min, x2_max = x[:, 1].min(), x[:, 1].max()   # 第1列的范围
     t1 = np.linspace(x1_min, x1_max, N)
     t2 = np.linspace(x2_min, x2_max, M)
-    x1, x2 = np.meshgrid(t1, t2)                    # 生成网格采样点
+    x1, x2 = np.meshgrid(t1, t2)                    # meshgrid返回坐标矩阵，生成网格采样点
     x_test = np.stack((x1.flat, x2.flat), axis=1)   # 测试点
 
     # # 无意义，只是为了凑另外两个维度

@@ -99,7 +99,7 @@ if __name__ == "__main__":
         model = models[t]
         plt.subplot(2,2,t+1)
         plt.plot(x, y, 'ro',ms=10,zorder=N)
-        for i,d in enumerate(d_pool):
+        for i,d in enumerate(d_pool): #返回数组里的对象和对象下标
             model.set_params(poly__degree=d) #给pipeline中poly 设置degree
             model.fit(x,y.ravel()) #训练模型 ,ravel:将多维数组转换为一维数组
             lin = model.get_params('linear')['linear'] #从pipeline中获取线性回归函数
